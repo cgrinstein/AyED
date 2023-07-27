@@ -1,21 +1,19 @@
 #include <iostream>
-#include <math.h>
+#include <iomanip>
 using namespace std;
-int main(){
- 
-double PR=0,aux=0, i=0, pi=0, N=4, D=1;
-int alt=1;
 
-cout << "cant. de decimales de precision: "; cin >> PR;
-i=pow(10,PR);
+int main() {
+    double pi = 0;
+    int iteraciones = 1000000; // iteraciones para precisión 
 
-for (aux ; aux<i ; aux++);  {
- pi=pi+alt*(N/D);
-   alt = alt*(-1);
-   D=D+2;
-}
-cout.precision(7);
-cout <<"pi: " << pi;
+    for (int i = 0; i < iteraciones; i++) {
+        pi += (i % 2 == 0) ? 1 / (2 * i + 1.0) : -1 / (2 * i + 1.0);
+    }
 
-return 0;
+    pi *= 4; // para obtener pi y no pi/4 
+
+    cout << fixed << setprecision(6);
+    cout << "pi = " << pi << endl;
+
+    return 0;
 }
